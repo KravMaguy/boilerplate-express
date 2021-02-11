@@ -1,9 +1,14 @@
 var express = require('express');
 var app = express();
+const serverless = require("serverless-http");
 
 
-app.get('/',  function(req,res){
-    res.send('Hello express');
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.json({
+    hello: "hi!"
+  });
 });
 
 
@@ -29,7 +34,7 @@ app.get('/',  function(req,res){
 
 
 
+app.use(`/.netlify/functions/api`, router);
 
-
-
- module.exports = app;
+module.exports = app;
+module.exports.handler = serverless(app);
