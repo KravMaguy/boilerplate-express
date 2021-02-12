@@ -5,6 +5,7 @@ const path = require('path')
 
 
 const router = express.Router();
+app.use("/",express.static("public"));
 
 router.get("/", (req, res) => {
   console.log('dirname: ',__dirname)
